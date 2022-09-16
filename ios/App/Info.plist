@@ -28,16 +28,16 @@
 				<string>$(FB_SCHEME)</string>
 			</array>
 		</dict>
-		 <dict>
+		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>None</string>
 			<key>CFBundleURLName</key>
 			<string>auth0</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+				<string>$(APP_BUNDLE_ID)</string>
 			</array>
-    	</dict>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>$(APP_BUILD_NUMBER)</string>
@@ -75,7 +75,7 @@
 		</dict>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string/>
+	<string></string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>AntDesign.ttf</string>

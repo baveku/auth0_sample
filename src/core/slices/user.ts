@@ -1,32 +1,34 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { Credentials, UserInfo } from 'react-native-auth0'
-import { loginAuth0Thunk, syncUserInfoThunk } from '@thunks'
 
 type AuthState = 'unauthorized' | 'authorized'
 
 export interface UserState {
 	user?: UserInfo
 	token?: Credentials
-	state: AuthState
+	status: AuthState
 }
 
 const initialState: UserState = {
-	state: 'unauthorized',
+	status: 'unauthorized',
 }
 
 const userSlice = createSlice({
 	name: 'USER_STATE',
 	initialState,
-	reducers: {},
-	extraReducers: builder => {
-		builder
-			.addCase(loginAuth0Thunk.fulfilled, (state, action) => {
-				state.token = action.payload
-				state.state = 'authorized'
-			})
-			.addCase(syncUserInfoThunk.fulfilled, (state, action) => {
-				state.user = action.payload
-			})
+	reducers: {
+		updateCredential(state, action: PayloadAction<Credentials>) {
+			state.token = action.payload
+			state.status = 'authorized'
+		},
+		deleteCredential(state) {
+			state.status = 'unauthorized'
+			state.user = undefined
+			state.token = undefined
+		},
+		updateUserInfo(state, action: PayloadAction<UserInfo>) {
+			state.user = action.payload
+		},
 	},
 })
 

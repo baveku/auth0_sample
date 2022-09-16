@@ -27,7 +27,6 @@ import { store } from '@redux.store'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { LiveAnimationProvider } from '@components/live-dot-animation'
 import { HomePage } from '@pages/home'
-import { loginAuth0Thunk } from 'src/core/thunks'
 
 const MainStack = createNativeStackNavigator<ReactNavigation.RootParamList>()
 
