@@ -74,6 +74,7 @@ const App = () => {
 function MainApp() {
 	return (
 		<Provider store={store}>
+			{/**@ts-ignore */}
 			<I18nextProvider i18n={i18n}>
 				<LiveAnimationProvider>
 					<App />
