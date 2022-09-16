@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react'
-import { StyleProp, ViewStyle } from 'react-native'
+import { StyleProp, ViewProps, ViewStyle } from 'react-native'
 import {
 	AnimateStyle,
 	Extrapolate,
@@ -23,7 +23,7 @@ const LiveAnimatedContext =
 export const useLiveAnimation = () => {
 	return useContext(LiveAnimatedContext)
 }
-const LiveAnimationProvider: React.FC<{}> = ({ children }) => {
+const LiveAnimationProvider: React.FC<ViewProps & {}> = ({ children }) => {
 	const alpha = useSharedValue(0)
 
 	const startAnimation = () => {

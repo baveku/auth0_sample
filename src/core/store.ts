@@ -13,6 +13,7 @@ import {
 } from '@slices'
 import _ from 'lodash'
 import { MMKV } from 'react-native-mmkv'
+import thunk from 'redux-thunk'
 const memStorage = new MMKV()
 const reducers = combineReducers({
 	home: homeSlice.reducer,
@@ -21,7 +22,7 @@ const reducers = combineReducers({
 	posts: postsSlice.reducer,
 	uiconfig: uiconfigSlice.reducer,
 })
-const middlewares: Middleware[] = []
+const middlewares: Middleware[] = [thunk]
 
 if (__DEV__) {
 	const createDebugger = require('redux-flipper-colorized').default

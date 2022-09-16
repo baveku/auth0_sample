@@ -14,26 +14,12 @@ jest.mock('react-native-reanimated', () => {
 jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper')
 
 jest.mock('react-native/Libraries/EventEmitter/NativeEventEmitter')
-jest.mock('@react-native-firebase/analytics', () => {
-	return () => ({
-		logEvent: jest.fn(),
-		setUserProperties: jest.fn(),
-		setUserId: jest.fn(),
-		setCurrentScreen: jest.fn(),
-	})
-})
-
-jest.mock('@react-native-firebase/crashlytics', () => {
-	return () => ({
-		crash: jest.fn(),
-	})
-})
 
 jest.mock('react-i18next', () => ({
 	...jest.requireActual('react-i18next'),
-	useTranslation: (domain?: string) => {
+	useTranslation: domain => {
 		return {
-			t: (str: string) => str,
+			t: str => str,
 			i18n: {
 				changeLanguage: () => new Promise(() => {}),
 			},
@@ -52,3 +38,4 @@ jest.mock('react-native-mmkv', () => {
 		}),
 	}
 })
+jest.spyOn(global.console, 'warn').mockImplementation(() => jest.fn())

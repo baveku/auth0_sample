@@ -55,10 +55,6 @@ static NSString *const kRNConcurrentRoot = @"concurrentRoot";
   } else {
       rootView.backgroundColor = [UIColor whiteColor];
   }
-  [self configureFirebase];
-  
-  [[FBSDKApplicationDelegate sharedInstance] application:application
-                             didFinishLaunchingWithOptions:launchOptions];
   
   self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
   UIViewController *rootViewController = [UIViewController new];
@@ -94,14 +90,6 @@ static NSString *const kRNConcurrentRoot = @"concurrentRoot";
 #else
   return [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
 #endif
-}
-
-- (void)configureFirebase
-{
-  NSString *firName = [ReactNativeConfig envFor:@"FIRName"];
-  NSString* filePath = [NSBundle.mainBundle pathForResource:firName ofType:@"plist"];;
-  FIROptions* fileOpts = [[FIROptions alloc] initWithContentsOfFile:filePath];
-  [FIRApp configureWithOptions:fileOpts];
 }
 
 - (BOOL)application:(UIApplication *)app

@@ -39,7 +39,7 @@ export type OnboardingParamList = {}
 export type SelectLanguageParamList = {}
 
 export type RootStackParamList = {
-	Tab: NavigatorScreenParams<TabParamList>
+	Home: HomeParamList
 	Auth: NavigatorScreenParams<AuthParamList>
 }
 

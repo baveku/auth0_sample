@@ -1,9 +1,12 @@
-import { CompositeScreenProps, StackActions, useNavigation } from '@react-navigation/core'
+import {
+	CompositeScreenProps,
+	StackActions,
+	useNavigation,
+} from '@react-navigation/core'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { AuthParamList, RootStackParamList } from '@router'
-import { Box, Button, Heading, Text } from 'native-base'
 import React, { useState } from 'react'
-import { StyleSheet } from 'react-native'
+import { Button, Pressable, StyleSheet, Text, View } from 'react-native'
 
 type Props = CompositeScreenProps<
 	NativeStackScreenProps<AuthParamList, 'Login'>,
@@ -11,7 +14,6 @@ type Props = CompositeScreenProps<
 >
 
 function LoginScreen() {
-
 	const navigation = useNavigation()
 
 	const onPressDismiss = () => {
@@ -19,19 +21,21 @@ function LoginScreen() {
 	}
 
 	return (
-		<Box flex="1">
-			<Button onPress={onPressDismiss}><Heading>Dismiss</Heading></Button>
-			<Text fontWeight="medium">
-
-			</Text>
-		</Box>
+		<View style={styles.container}>
+			<Text></Text>
+			<Pressable style={styles.logoutBtn} onPress={onPressDismiss}>
+				<Text style={styles.logoutTitle}>Logout</Text>
+			</Pressable>
+		</View>
 	)
 }
-
-export default LoginScreen
 
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 	},
+	logoutBtn: {},
+	logoutTitle: {},
 })
+
+export default LoginScreen
