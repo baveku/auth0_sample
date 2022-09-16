@@ -64,6 +64,7 @@
 			"@router": ["./src/router"],
 			"@shared/*": ["./src/shared/*"],
 			"@hooks": ["./src/core/hooks.ts"],
+			"@thunks": ["src/core/thunks"],
 			"@redux.store": ["./src/core/store.ts"],
 			"@slices": ["./src/core/slices"],
 			"@selectors": ["./src/core/selectors"],

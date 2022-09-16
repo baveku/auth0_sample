@@ -27,7 +27,8 @@ module.exports = function (api) {
 					'@redux.store': './src/core/store.ts',
 					'@selectors': './src/core/selectors',
 					'@slices': './src/core/slices',
-					'@themes': './src/theme'
+					'@themes': './src/theme',
+					'@thunks': './src/core/thunks',
 				},
 			},
 		],

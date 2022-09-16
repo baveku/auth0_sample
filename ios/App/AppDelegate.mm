@@ -5,9 +5,7 @@
 #import <React/RCTRootView.h>
 #import <React/RCTAppSetupUtils.h>
 
-#import <Firebase.h>
 #import "ReactNativeConfig.h"
-#import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <React/RCTLinkingManager.h>
 
 #if RCT_NEW_ARCH_ENABLED
@@ -92,19 +90,10 @@ static NSString *const kRNConcurrentRoot = @"concurrentRoot";
 #endif
 }
 
-- (BOOL)application:(UIApplication *)app
-            openURL:(NSURL *)url
-            options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url
+            options:(NSDictionary<UIApplicationOpenURLOptionsKey, id> *)options
 {
-  if ([[FBSDKApplicationDelegate sharedInstance] application:app openURL:url options:options]) {
-    return YES;
-  }
-
-  if ([RCTLinkingManager application:app openURL:url options:options]) {
-    return YES;
-  }
-
-  return NO;
+  return [RCTLinkingManager application:app openURL:url options:options];
 }
 
 #if RCT_NEW_ARCH_ENABLED

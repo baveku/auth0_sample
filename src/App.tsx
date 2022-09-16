@@ -22,12 +22,12 @@ import i18n from './tools/i18n'
 import { StorageKey, UserWorkflowState } from '@storage'
 import { RootStackParamList } from '@router'
 import { useAppDispatch, useAppSelector } from '@hooks'
-import { Provider } from 'react-redux'
+import { Provider, useDispatch } from 'react-redux'
 import { store } from '@redux.store'
-import { navigationSlice } from '@slices'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { LiveAnimationProvider } from '@components/live-dot-animation'
 import { HomePage } from '@pages/home'
+import { loginAuth0Thunk } from 'src/core/thunks'
 
 const MainStack = createNativeStackNavigator<ReactNavigation.RootParamList>()
 
@@ -36,13 +36,12 @@ const App = () => {
 	const navigationRef = useNavigationContainerRef()
 	const { t, i18n } = useTranslation()
 	const dispatch = useAppDispatch()
+	const userState = useAppSelector(state => state.user)
 
 	const [isDark, setDark] = useState(false)
 
 	useFlipper(navigationRef)
-	const onReady = () => {
-		routeNameRef.current = navigationRef.current.getCurrentRoute().name
-	}
+	const onReady = async () => {}
 
 	const getInitialRoute = () => {
 		let currentRouteName: keyof RootStackParamList = 'Home'

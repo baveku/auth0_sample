@@ -81,16 +81,15 @@ project.ext.react = [
     enableHermes: true,  // clean and rebuild if changing
 ]
 project.ext.envConfigFiles = [
-    debug: ".env.dev",
-    release: ".env.pro",
-    anothercustombuild: ".env.dev",
+    debug: ".env",
+    release: ".env",
+    anothercustombuild: ".env",
 ]
 
 project.ext.vectoricons = [
     iconFontNames: [ 'MaterialCommunityIcons.ttf', 'FontAwesome.ttf', 'Inoicons.ttf', 'Foundation.ttf', 'Octicons.ttf'] // Name of the font files you want to copy
 ]
 
-apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
 apply from: "../../node_modules/react-native/react.gradle"
 apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
 
@@ -145,8 +144,10 @@ android {
     compileSdkVersion rootProject.ext.compileSdkVersion
 
     defaultConfig {
+        
 		resValue "string", "build_config_package", "com.josbach"
         applicationId project.env.get("APP_BUNDLE_ID")
+        manifestPlaceholders = [auth0Domain: project.env.get("AUTH0_DOMAIN"), auth0Scheme: project.env.get("APP_BUNDLE_ID")]
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode project.env.get("APP_BUILD_NUMBER")

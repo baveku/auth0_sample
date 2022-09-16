@@ -4,25 +4,16 @@ import {
 	Middleware,
 	Slice,
 } from '@reduxjs/toolkit'
-import {
-	feedSlice,
-	homeSlice,
-	postsSlice,
-	uiconfigSlice,
-	navigationSlice,
-} from '@slices'
+import { homeSlice, userSlice } from '@slices'
 import _ from 'lodash'
 import { MMKV } from 'react-native-mmkv'
 import thunk from 'redux-thunk'
 const memStorage = new MMKV()
 const reducers = combineReducers({
 	home: homeSlice.reducer,
-	feed: feedSlice.reducer,
-	navigation: navigationSlice.reducer,
-	posts: postsSlice.reducer,
-	uiconfig: uiconfigSlice.reducer,
+	user: userSlice.reducer,
 })
-const middlewares: Middleware[] = [thunk]
+const middlewares: Middleware[] = []
 
 if (__DEV__) {
 	const createDebugger = require('redux-flipper-colorized').default
@@ -40,7 +31,8 @@ const onLoadPreloadState = () => {
 
 export const store = configureStore({
 	reducer: reducers,
-	middleware: middlewares,
+	middleware: getDefaultMiddleware =>
+		getDefaultMiddleware().concat(middlewares).concat(thunk),
 	preloadedState: onLoadPreloadState(),
 })
 
